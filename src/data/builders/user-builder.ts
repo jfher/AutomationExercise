@@ -22,6 +22,11 @@ export class UserBuilder {
         return this;
     }
 
+    withNonExistingEmail(): UserBuilder {
+        this.user.email = `qa_${Date.now()}@mailinator.com`;
+        return this;
+    }
+
     build(): User {
         return { ...this.user };
     }
