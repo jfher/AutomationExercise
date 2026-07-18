@@ -1,8 +1,10 @@
+import { UserBuilder } from '@data/builders/user-builder';
 import { User } from '@models/user';
 
 export const users = {
-    validUser: {
-        email: 'qaautomationexercise@gmail.com',
-        password: 'QaAutomation123'
-    } satisfies User
+    validUser:
+        new UserBuilder()
+            .withEmail(process.env.LOGIN_EMAIL ?? '')
+            .withPassword(process.env.LOGIN_PASSWORD ?? '')
+            .build()
 };

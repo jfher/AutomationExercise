@@ -10,6 +10,6 @@ export class AuthenticationFlow {
         await this.loginPage.open();
         await this.loginPage.enterEmail(user.email);
         await this.loginPage.enterPassword(user.password);
-        await this.loginPage.submitLogin();
+        await this.loginPage.clickLogin();
     }
 }

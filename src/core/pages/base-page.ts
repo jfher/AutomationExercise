@@ -11,7 +11,7 @@ export abstract class BasePage {
         await this.page.reload();
     }
 
-    async waitUntilLoaded(): Promise<void> {
+    async waitForPageLoad(): Promise<void> {
         await this.page.waitForLoadState('domcontentloaded');
     }
 

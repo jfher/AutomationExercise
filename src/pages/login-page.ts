@@ -1,19 +1,28 @@
-import { Page } from '@playwright/test';
+import { Locator, Page } from '@playwright/test';
 import { BasePage } from '@core/pages/base-page';
 
 export class LoginPage extends BasePage {
-    private readonly signupLoginLink = this.page.locator("a[href='/login']");
-    private readonly emailInput = this.page.locator("input[data-qa='login-email']");
-    private readonly passwordInput = this.page.locator("input[data-qa='login-password']");
-    private readonly loginButton = this.page.locator("button[data-qa='login-button']");
-    private readonly loggedUserLabel = this.page.locator('a b');
+    private readonly signupLoginLink: Locator;
+    private readonly emailInput: Locator;
+    private readonly passwordInput: Locator;
+    private readonly loginButton: Locator;
+    private readonly loggedUserLabel: Locator;
 
     constructor(page: Page) {
         super(page);
+        this.signupLoginLink = page.locator("a[href='/login']");
+        this.emailInput = page.locator("input[data-qa='login-email']");
+        this.passwordInput = page.locator("input[data-qa='login-password']");
+        this.loginButton = page.locator("button[data-qa='login-button']");
+        this.loggedUserLabel = page.locator("a b");
     }
 
     async open(): Promise<void> {
         await this.navigate('/login');
+    }
+
+    async clickSignupLogin(): Promise<void> {
+        await this.signupLoginLink.click();
     }
 
     async enterEmail(email: string): Promise<void> {
@@ -24,11 +33,11 @@ export class LoginPage extends BasePage {
         await this.passwordInput.fill(password);
     }
 
-    async submitLogin(): Promise<void> {
+    async clickLogin(): Promise<void> {
         await this.loginButton.click();
     }
 
     async getLoggedUsername(): Promise<string> {
-        return (await this.loggedUserLabel.textContent()) ?? '';
+        return (await this.loggedUserLabel.textContent())?.trim() ?? '';
     }
 }

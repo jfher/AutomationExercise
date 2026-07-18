@@ -1,4 +1,4 @@
-import { test as base } from '@playwright/test';
+import { test as base, expect } from '@playwright/test';
 
 import { LoginPage } from '@pages/login-page';
 import { AuthenticationFlow } from '@flows/authentication-flow';
@@ -27,4 +27,4 @@ export const test = base.extend<Fixtures>({
     }
 });
 
-export { expect } from '@playwright/test';
+export { expect };
