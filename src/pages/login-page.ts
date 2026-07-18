@@ -5,7 +5,6 @@ import { HeaderComponent } from '@components/header-component';
 export class LoginPage extends BasePage {
     readonly header: HeaderComponent;
 
-    private readonly signupLoginLink: Locator;
     private readonly emailInput: Locator;
     private readonly passwordInput: Locator;
     private readonly loginButton: Locator;
@@ -13,7 +12,6 @@ export class LoginPage extends BasePage {
     constructor(page: Page) {
         super(page);
         this.header = new HeaderComponent(page);
-        this.signupLoginLink = page.locator("a[href='/login']");
         this.emailInput = page.locator("input[data-qa='login-email']");
         this.passwordInput = page.locator("input[data-qa='login-password']");
         this.loginButton = page.locator("button[data-qa='login-button']")

@@ -1,10 +1,14 @@
-import { expect, test } from '@fixtures/test.fixture';
+import { test, expect } from '@fixtures/test.fixture';
 
-test.describe('Authentication', { tag: ['@smoke', '@authentication'] }, () => {
-
-    test('Registered user can login', { tag: ['@smoke', '@authentication', '@positive'] },
-        async ({ authenticationFlow, validUser, loginPage }) => {
-            await authenticationFlow.login(validUser);
-            await expect(loginPage.header.loggedUser()).toBeVisible();
-        });
+test.describe('Authentication Module', () => {
+    test.describe('Positive Scenarios', () => {
+        test('[AUTH-001] Registered user can login successfully', { tag: ['@smoke', '@regression', '@authentication'] },
+            async ({ authenticationFlow, loginPage, validUser }) => {
+                await authenticationFlow.login(validUser);
+                await expect(loginPage.header.getLoggedUser()).toBeVisible();
+                await expect(loginPage.header.getLogoutLink()).toBeVisible();
+                await expect(loginPage.header.getLoginLink()).toBeHidden();
+            }
+        );
+    });
 });
