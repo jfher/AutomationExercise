@@ -17,6 +17,11 @@ export class UserBuilder {
         return this;
     }
 
+    withInvalidPassword(): UserBuilder {
+        this.user.password = 'InvalidPassword123';
+        return this;
+    }
+
     build(): User {
         return { ...this.user };
     }

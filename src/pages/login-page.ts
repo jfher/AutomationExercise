@@ -8,13 +8,15 @@ export class LoginPage extends BasePage {
     private readonly emailInput: Locator;
     private readonly passwordInput: Locator;
     private readonly loginButton: Locator;
+    private readonly loginErrorMessage: Locator;
 
     constructor(page: Page) {
         super(page);
         this.header = new HeaderComponent(page);
         this.emailInput = page.locator("input[data-qa='login-email']");
         this.passwordInput = page.locator("input[data-qa='login-password']");
-        this.loginButton = page.locator("button[data-qa='login-button']")
+        this.loginButton = page.locator("button[data-qa='login-button']");
+        this.loginErrorMessage = page.locator("form[action='/login'] p");
     }
 
     async open(): Promise<void> {
@@ -31,5 +33,9 @@ export class LoginPage extends BasePage {
 
     async clickLogin(): Promise<void> {
         await this.loginButton.click();
+    }
+
+    getLoginErrorMessage(): Locator {
+        return this.loginErrorMessage;
     }
 }
