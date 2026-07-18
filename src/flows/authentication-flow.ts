@@ -7,9 +7,9 @@ export class AuthenticationFlow {
     ) { }
 
     async login(user: User): Promise<void> {
-        await this.loginPage.navigate('/login');
-        await this.loginPage.emailInput.fill(user.email);
-        await this.loginPage.passwordInput.fill(user.password);
-        await this.loginPage.loginButton.click();
+        await this.loginPage.open();
+        await this.loginPage.enterEmail(user.email);
+        await this.loginPage.enterPassword(user.password);
+        await this.loginPage.submitLogin();
     }
 }
