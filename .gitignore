@@ -1,3 +1,14 @@
-node_modules
+node_modules/
+playwright-report/
+reports/
+test-results/
+blob-report/
+coverage/
+
 .env
+
+.DS_Store
+
 docs/04-requirements-analysis.md
+src/core/actions
+docs/architecture.md
