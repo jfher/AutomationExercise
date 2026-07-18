@@ -1,0 +1,40 @@
+{
+  "name": "automationexercise-playwright-framework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jfher/AutomationExercise.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jfher/AutomationExercise/issues"
+  },
+  "homepage": "https://github.com/jfher/AutomationExercise#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^26.1.1",
+    "cross-env": "^10.1.0",
+    "eslint": "^10.7.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-playwright": "^2.10.5",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.9.5",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2"
+  }
+}
