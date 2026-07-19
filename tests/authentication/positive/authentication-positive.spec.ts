@@ -43,6 +43,33 @@ test.describe('Authentication Module', () => {
          * Priority   : High
          */
         test('[AUTH-005] New users must be able to register', { tag: ['@regression', '@authentication'] },
+            async ({ registrationFlow, registerPage, accountCreatedPage, randomUser }) => {
+
+                await test.step('Signup', async () => {
+                    await registrationFlow.signup(randomUser);
+                    await registerPage.isDisplayed();
+                })
+
+                await test.step('Create Account', async () => {
+                    await registrationFlow.createAccount(randomUser);
+                    await expect(accountCreatedPage.getTitle()).toBeVisible();
+                })
+
+                await test.step('Continue', async () => {
+                    await registrationFlow.continueToMainPageFromCreated();
+                    await expect(registerPage.header.getLoggedUser()).toBeVisible();
+                    await expect(registerPage.header.getLogoutLink()).toBeVisible();
+                    await expect(registerPage.header.getLoginLink()).toBeHidden();
+                })
+            }
+        );
+
+        /**
+         * Requirement : FR-006
+         * Test Case  : AUTH-007
+         * Priority   : Medium
+         */
+        test('[AUTH-007] Registered users can delete their account', { tag: ['@regression', '@authentication'] },
             async ({ registrationFlow, registerPage, accountCreatedPage, accountDeletedPage, randomUser }) => {
 
                 await test.step('Signup', async () => {
@@ -56,7 +83,7 @@ test.describe('Authentication Module', () => {
                 })
 
                 await test.step('Continue', async () => {
-                    await accountCreatedPage.continue();
+                    await registrationFlow.continueToMainPageFromCreated();
                     await expect(registerPage.header.getLoggedUser()).toBeVisible();
                     await expect(registerPage.header.getLogoutLink()).toBeVisible();
                     await expect(registerPage.header.getLoginLink()).toBeHidden();
@@ -68,7 +95,7 @@ test.describe('Authentication Module', () => {
                 })
 
                 await test.step('Continue', async () => {
-                    await accountDeletedPage.continue();
+                    await registrationFlow.continueToMainPageFromDeleted();
                     await expect(registerPage.header.getLoggedUser()).toBeHidden();
                     await expect(registerPage.header.getLogoutLink()).toBeHidden();
                     await expect(registerPage.header.getLoginLink()).toBeVisible();
