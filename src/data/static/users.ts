@@ -1,4 +1,5 @@
 import { UserBuilder } from '@data/builders/user-builder';
+import { Countries, User } from '@models/user';
 
 export const users = {
     validUser:
@@ -11,25 +12,7 @@ export const users = {
         .withFakerUser()
         .build(),
 
-    staticUser: {
-        title: '',
-        name: 'Carlton Gislason',
-        email: 'Thelma_Kshlerin7@gmail.com',
-        password: 'QoDk8UUYJ4PLiyC',
-        dayOfBirth: '6',
-        monthOfBirth: '5',
-        yearOfBirth: '1993',
-        addressInformation: {
-            firstName: 'Alma',
-            lastName: 'Borer',
-            company: 'Botsford - Feeney',
-            address: '214 Fritsch Alley',
-            address2: 'Apt. 369',
-            country: 'Singapore',
-            state: 'New Jersey',
-            city: 'Arlieworth',
-            zipCode: '19190',
-            mobileNumber: '1-536-276-3445 x247'
-        }
-    }
+    staticUser: new UserBuilder()
+        .withAllUserData(JSON.parse(process.env.USER_VALID!) as User)
+        .build()
 };

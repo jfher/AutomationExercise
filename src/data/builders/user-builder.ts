@@ -44,6 +44,27 @@ export class UserBuilder {
         return this;
     }
 
+    withAllUserData(user: User): UserBuilder {
+        this.user.title = user.title;
+        this.user.name = user.name;
+        this.user.email = user.email;
+        this.user.password = user.password;
+        this.user.dayOfBirth = user.dayOfBirth;
+        this.user.monthOfBirth = user.monthOfBirth;
+        this.user.yearOfBirth = user.yearOfBirth;
+        this.user.addressInformation.firstName = user.addressInformation.firstName;
+        this.user.addressInformation.lastName = user.addressInformation.lastName;
+        this.user.addressInformation.company = user.addressInformation.company;
+        this.user.addressInformation.address = user.addressInformation.address;
+        this.user.addressInformation.address2 = user.addressInformation.address2;
+        this.user.addressInformation.country = user.addressInformation.country;
+        this.user.addressInformation.state = user.addressInformation.state;
+        this.user.addressInformation.city = user.addressInformation.city;
+        this.user.addressInformation.zipCode = user.addressInformation.zipCode;
+        this.user.addressInformation.mobileNumber = user.addressInformation.mobileNumber;
+        return this;
+    }
+
     withFakerUser(): UserBuilder {
         this.user.name = faker.person.fullName();
         this.user.email = faker.internet.email();
@@ -65,7 +86,6 @@ export class UserBuilder {
     }
 
     build(): User {
-        console.log(this.user);
         return { ...this.user };
     }
 

@@ -13,8 +13,7 @@ export class AuthenticationFlow {
         await this.loginPage.clickLogin();
     }
 
-    async logout(user: User): Promise<void> {
-        await this.login(user);
+    async logout(): Promise<void> {
         await this.loginPage.header.logout();
     }
 }

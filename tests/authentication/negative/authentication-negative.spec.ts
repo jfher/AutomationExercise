@@ -1,4 +1,5 @@
 import { UserBuilder } from '@data/builders/user-builder';
+import { AuthenticationErrorMessages } from '@data/constants/authentication-errors';
 import { test, expect } from '@fixtures/test.fixture';
 
 test.describe('Authentication Module', () => {
@@ -22,7 +23,7 @@ test.describe('Authentication Module', () => {
                 });
 
                 await test.step('Verify validation message', async () => {
-                    await expect(loginPage.getLoginErrorMessage()).toContainText('Your email or password is incorrect!');
+                    await expect(loginPage.getLoginErrorMessage()).toContainText(AuthenticationErrorMessages.InvalidCredentials);
                 });
             }
         );
@@ -44,9 +45,26 @@ test.describe('Authentication Module', () => {
                 });
 
                 await test.step('Verify error message', async () => {
-                    await expect(loginPage.getLoginErrorMessage()).toContainText('Your email or password is incorrect!');
+                    await expect(loginPage.getLoginErrorMessage()).toContainText(AuthenticationErrorMessages.InvalidCredentials);
                 });
 
+            }
+        );
+
+        /**
+         * Requirement : FR-005
+         * Test Case   : AUTH-006
+         * Priority    : Medium
+         */
+        test('[AUTH-006] Users with an existing email address cannot be registered again', { tag: ['@authentication', '@negative', '@regression'] },
+            async ({ registrationFlow, registerPage, staticUser }) => {
+                await test.step('Execute signup', async () => {
+                    await registrationFlow.signup(staticUser);
+                });
+
+                await test.step('Verify validation message', async () => {
+                    await expect(registerPage.getSignupErrorMessage()).toContainText(AuthenticationErrorMessages.ExistingEmail);
+                });
             }
         );
     });

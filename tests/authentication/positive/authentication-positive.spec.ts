@@ -1,5 +1,4 @@
 import { test, expect } from '@fixtures/test.fixture';
-import { RegisterPage } from '@pages/register-page';
 
 test.describe('Authentication Module', () => {
     test.describe('Positive Scenarios', () => {
@@ -9,8 +8,8 @@ test.describe('Authentication Module', () => {
          * Priority   : Critical
          */
         test('[AUTH-001] Registered user can login successfully', { tag: ['@smoke', '@regression', '@authentication'] },
-            async ({ authenticationFlow, loginPage, validUser }) => {
-                await authenticationFlow.login(validUser);
+            async ({ authenticationFlow, loginPage, staticUser }) => {
+                await authenticationFlow.login(staticUser);
                 await expect(loginPage.header.getLoggedUser()).toBeVisible();
                 await expect(loginPage.header.getLogoutLink()).toBeVisible();
                 await expect(loginPage.header.getLoginLink()).toBeHidden();
@@ -23,13 +22,13 @@ test.describe('Authentication Module', () => {
          * Priority   : Medium
          */
         test("[AUTH-004] Authenticated user can logout successfully", { tag: ["@authentication", "@regression"] },
-            async ({ authenticationFlow, loginPage, validUser }) => {
+            async ({ authenticationFlow, loginPage, staticUser }) => {
                 await test.step("Login", async () => {
-                    await authenticationFlow.login(validUser);
+                    await authenticationFlow.login(staticUser);
                 });
 
                 await test.step("Logout", async () => {
-                    await authenticationFlow.logout(validUser);
+                    await authenticationFlow.logout();
                 });
 
                 await test.step("Verify", async () => {
@@ -44,7 +43,7 @@ test.describe('Authentication Module', () => {
          * Priority   : High
          */
         test('[AUTH-005] New users must be able to register', { tag: ['@regression', '@authentication'] },
-            async ({ registrationFlow, registerPage, accountCreatedPage, randomUser }) => {
+            async ({ registrationFlow, registerPage, accountCreatedPage, accountDeletedPage, randomUser }) => {
 
                 await test.step('Signup', async () => {
                     await registrationFlow.signup(randomUser);
@@ -61,6 +60,18 @@ test.describe('Authentication Module', () => {
                     await expect(registerPage.header.getLoggedUser()).toBeVisible();
                     await expect(registerPage.header.getLogoutLink()).toBeVisible();
                     await expect(registerPage.header.getLoginLink()).toBeHidden();
+                })
+
+                await test.step('Delete Account', async () => {
+                    await registerPage.header.deleteAccount();
+                    await expect(accountDeletedPage.getTitle()).toBeVisible();
+                })
+
+                await test.step('Continue', async () => {
+                    await accountDeletedPage.continue();
+                    await expect(registerPage.header.getLoggedUser()).toBeHidden();
+                    await expect(registerPage.header.getLogoutLink()).toBeHidden();
+                    await expect(registerPage.header.getLoginLink()).toBeVisible();
                 })
             }
         );
