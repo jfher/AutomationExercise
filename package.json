@@ -1,21 +1,34 @@
 {
   "name": "automationexercise-playwright-framework",
   "version": "1.0.0",
-  "description": "",
+  "description": "A QA analysis on the ecommerce simulator web application usign playwright and typescript",
   "main": "index.js",
   "directories": {
     "doc": "docs",
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx playwright test",
+    "test:smoke": "npx playwright test --grep @smoke",
+    "test:regression": "npx playwright test --grep @regression",
+    "test:authentication": "npx playwright test --grep @authentication",
+    "test:report": "npx playwright show-report",
+    "test:ui": "npx playwright test --ui"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jfher/AutomationExercise.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "playwright",
+    "typescript",
+    "automation",
+    "qa",
+    "testing",
+    "allure",
+    "faker"
+  ],
+  "author": "Luis Fernando Aruquipa Gamarra",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {

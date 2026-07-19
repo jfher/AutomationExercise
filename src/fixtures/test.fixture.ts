@@ -43,8 +43,8 @@ export const test = base.extend<Fixtures>({
         await use(new AuthenticationFlow(loginPage));
     },
 
-    registrationFlow: async ({ registerPage }, use) => {
-        await use(new RegistrationFlow(registerPage));
+    registrationFlow: async ({ registerPage, accountDeletedPage, accountCreatedPage }, use) => {
+        await use(new RegistrationFlow(registerPage, accountDeletedPage, accountCreatedPage));
     },
 
     validUser: async ({ }, use) => {
