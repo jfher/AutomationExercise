@@ -12,4 +12,9 @@ export class AuthenticationFlow {
         await this.loginPage.enterPassword(user.password);
         await this.loginPage.clickLogin();
     }
+
+    async logout(user: User): Promise<void> {
+        await this.login(user);
+        await this.loginPage.header.logout();
+    }
 }

@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test';
+import { expect, Locator, Page } from '@playwright/test';
 import { BasePage } from '@core/pages/base-page';
 import { HeaderComponent } from '@components/header-component';
 
@@ -37,5 +37,9 @@ export class LoginPage extends BasePage {
 
     getLoginErrorMessage(): Locator {
         return this.loginErrorMessage;
+    }
+
+    async isDisplayed(): Promise<void> {
+        await expect(this.emailInput).toBeVisible();
     }
 }
