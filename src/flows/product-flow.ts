@@ -16,9 +16,12 @@ export class ProductFlow {
     }
 
     async openFirstProductDetails(): Promise<void> {
-
         await this.productsPage.open();
         await this.productsPage.getProductCard(0).openDetails();
+    }
 
+    async filterByCategory(category: string, subCategory: string): Promise<void> {
+        await this.productsPage.open();
+        await this.productsPage.selectCategory(category, subCategory);
     }
 }
