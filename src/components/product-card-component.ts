@@ -32,4 +32,8 @@ export class ProductCardComponent extends BaseComponent {
         await this.viewProductButton.click();
     }
 
+    async openDetails(): Promise<void> {
+        await this.viewProductButton.click();
+    }
+
 }

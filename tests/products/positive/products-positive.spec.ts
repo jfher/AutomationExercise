@@ -46,5 +46,26 @@ test.describe('Products Module', () => {
                 });
             }
         );
+
+        /**
+         * Requirement : FR-PROD-003
+         * Test Case   : PROD-003
+         * Priority    : High
+         */
+        test('[PROD-003] User can view product details', { tag: ['@products', '@regression'] },
+            async ({ productFlow, productDetailsPage }) => {
+                await test.step('Open product details', async () => {
+                    await productFlow.openFirstProductDetails();
+                });
+
+                await test.step('Verify product information', async () => {
+                    await expect(productDetailsPage.getProductName()).toBeVisible();
+                    await expect(productDetailsPage.getProductPrice()).toBeVisible();
+                    await expect(productDetailsPage.getAvailability()).toBeVisible();
+                    await expect(productDetailsPage.getCategory()).toBeVisible();
+                    await expect(productDetailsPage.getBrand()).toBeVisible();
+                });
+            }
+        );
     });
 });

@@ -14,4 +14,11 @@ export class ProductFlow {
         await this.productsPage.open();
         await this.productsPage.search(product);
     }
+
+    async openFirstProductDetails(): Promise<void> {
+
+        await this.productsPage.open();
+        await this.productsPage.getProductCard(0).openDetails();
+
+    }
 }
