@@ -1,3 +1,4 @@
+import { Products } from '@data/static/products';
 import { test, expect } from '@fixtures/test.fixture';
 
 test.describe('Products Module', () => {
@@ -24,6 +25,24 @@ test.describe('Products Module', () => {
                     await expect(firstProduct.getName()).toBeVisible();
                     await expect(firstProduct.getPrice()).toBeVisible();
                     await expect(firstProduct.getViewProductButton()).toBeVisible();
+                });
+            }
+        );
+
+        /**
+         * Requirement : FR-PROD-002
+         * Test Case   : PROD-002
+         * Priority    : High
+         */
+        test('[PROD-002] User can search an existing product', { tag: ['@products', '@regression'] },
+            async ({ productFlow, productsPage }) => {
+                await test.step('Search product', async () => {
+                    await productFlow.searchProduct(Products.blueTop);
+                });
+
+                await test.step('Verify search results', async () => {
+                    await expect(productsPage.getSearchedProductsTitle()).toContainText('Searched Products');
+                    await expect(productsPage.getProductCards()).not.toHaveCount(0)
                 });
             }
         );

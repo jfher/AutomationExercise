@@ -9,4 +9,9 @@ export class ProductFlow {
     async openProducts(): Promise<void> {
         await this.productsPage.open();
     }
+
+    async searchProduct(product: string): Promise<void> {
+        await this.productsPage.open();
+        await this.productsPage.search(product);
+    }
 }
