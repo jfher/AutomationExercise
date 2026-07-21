@@ -1,9 +1,11 @@
+import { ProductDetailsPage } from '@pages/product-details-page';
 import { ProductsPage } from '@pages/products-page';
 
 export class ProductFlow {
 
     constructor(
-        private readonly productsPage: ProductsPage
+        private readonly productsPage: ProductsPage,
+        private readonly productDetailsPage: ProductDetailsPage
     ) { }
 
     async openProducts(): Promise<void> {
@@ -28,5 +30,13 @@ export class ProductFlow {
     async filterByBrand(brand: string): Promise<void> {
         await this.productsPage.open();
         await this.productsPage.selectBrand(brand);
+    }
+
+    async addProductWithQuantity(quantity: number): Promise<void> {
+        await this.productsPage.open();
+        await this.productsPage.getProductCard(0).openDetails();
+        await this.productDetailsPage.setQuantity(quantity);
+        await this.productDetailsPage.addToCart();
+        await this.productsPage.viewCartModal();
     }
 }

@@ -61,8 +61,8 @@ export const test = base.extend<Fixtures>({
         await use(new ProductDetailsPage(page));
     },
 
-    productFlow: async ({ productsPage }, use) => {
-        await use(new ProductFlow(productsPage));
+    productFlow: async ({ productsPage, productDetailsPage }, use) => {
+        await use(new ProductFlow(productsPage, productDetailsPage));
     },
 
     cartFlow: async ({ productsPage, cartPage }, use) => {

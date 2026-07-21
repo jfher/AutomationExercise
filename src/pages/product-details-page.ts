@@ -9,6 +9,8 @@ export class ProductDetailsPage extends BasePage {
     private readonly availability: Locator;
     private readonly category: Locator;
     private readonly brand: Locator;
+    private readonly quantityInput: Locator;
+    private readonly addToCartButton: Locator;
 
     constructor(page: Page) {
         super(page);
@@ -17,6 +19,17 @@ export class ProductDetailsPage extends BasePage {
         this.availability = page.locator('.product-information p').filter({ hasText: 'Availability' });
         this.category = page.locator('.product-information p').filter({ hasText: 'Category' });
         this.brand = page.locator('.product-information p').filter({ hasText: 'Brand' });
+        this.quantityInput = page.locator("#quantity");
+        this.addToCartButton = page.locator("button.cart");
+    }
+
+    async setQuantity(quantity: number): Promise<void> {
+        await this.quantityInput.clear();
+        await this.quantityInput.fill(quantity.toString());
+    }
+
+    async addToCart(): Promise<void> {
+        await this.addToCartButton.click();
     }
 
     getProductName(): Locator {

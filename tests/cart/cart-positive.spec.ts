@@ -53,5 +53,18 @@ test.describe('Cart Module', () => {
                 await expect(cartPage.getItems()).toHaveCount(0);
             }
         );
+
+        /**
+         * Requirement : FR-CART-004
+         * Test Case   : CART-004
+         * Priority: High
+         */
+        test("[CART-004] User can add product with custom quantity", { tag: ["@cart", "@regression"] },
+            async ({ productFlow, cartPage }) => {
+                await productFlow.addProductWithQuantity(4);
+                const item = cartPage.getItem(0);
+                await expect(item.getQuantity()).toContainText("4");
+            }
+        );
     });
 });
