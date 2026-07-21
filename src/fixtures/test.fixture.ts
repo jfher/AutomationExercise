@@ -13,6 +13,7 @@ import { ProductDetailsPage } from '@pages/product-details-page';
 import { ProductFlow } from '@flows/product-flow';
 import { CartPage } from '@pages/cart-page';
 import { CartFlow } from '@flows/cart-flow';
+import { CheckoutPage } from '@pages/checkout-page';
 
 type Fixtures = {
     loginPage: LoginPage;
@@ -22,6 +23,7 @@ type Fixtures = {
     productDetailsPage: ProductDetailsPage;
     accountCreatedPage: AccountCreatedPage;
     accountDeletedPage: AccountDeletedPage;
+    checkoutPage: CheckoutPage;
     authenticationFlow: AuthenticationFlow;
     registrationFlow: RegistrationFlow;
     productFlow: ProductFlow;
@@ -60,6 +62,11 @@ export const test = base.extend<Fixtures>({
     productDetailsPage: async ({ page }, use) => {
         await use(new ProductDetailsPage(page));
     },
+
+    checkoutPage: async ({ page }, use) => {
+        await use(new CheckoutPage(page));
+    },
+
 
     productFlow: async ({ productsPage, productDetailsPage }, use) => {
         await use(new ProductFlow(productsPage, productDetailsPage));

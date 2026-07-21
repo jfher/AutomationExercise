@@ -80,5 +80,18 @@ test.describe('Cart Module', () => {
                 await expect(productsPage.getProductCards()).not.toHaveCount(0);
             }
         );
+
+        /**
+         * Requirement : FR-CART-006
+         * Test Case   : CART-006
+         * Priority: Critical
+         */
+
+        test("[CART-006] User can proceed to checkout", { tag: ["@cart", "@smoke", "@regression"] },
+            async ({ cartFlow, checkoutPage }) => {
+                await cartFlow.proceedCheckout();
+                await expect(checkoutPage.reviewOrder).toBeVisible();
+            }
+        );
     });
 });

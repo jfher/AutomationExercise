@@ -17,4 +17,9 @@ export class CartFlow {
     async openCart(): Promise<void> {
         await this.cartPage.open();
     }
+
+    async proceedCheckout(): Promise<void> {
+        await this.addFirstProductToCart();
+        await this.cartPage.checkout();
+    }
 }

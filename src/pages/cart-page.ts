@@ -5,10 +5,12 @@ import { CartItemComponent } from "@components/cart-item-component";
 export class CartPage extends BasePage {
 
     private readonly cartItems: Locator;
+    private readonly checkoutButton: Locator;
 
     constructor(page: Page) {
         super(page);
         this.cartItems = page.locator("#cart_info_table tbody tr");
+        this.checkoutButton = page.locator(".check_out");;
     }
 
     async open(): Promise<void> {
@@ -17,6 +19,10 @@ export class CartPage extends BasePage {
 
     async removeFirstItem(): Promise<void> {
         await this.getItem(0).remove();
+    }
+
+    async checkout(): Promise<void> {
+        await this.checkoutButton.click();
     }
 
     getItems(): Locator {
