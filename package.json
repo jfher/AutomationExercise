@@ -12,6 +12,7 @@
     "test:smoke": "npx playwright test --grep @smoke",
     "test:regression": "npx playwright test --grep @regression",
     "test:authentication": "npx playwright test --grep @authentication",
+    "test:products": "npx playwright test --grep @products",
     "test:report": "npx playwright show-report",
     "test:ui": "npx playwright test --ui"
   },
