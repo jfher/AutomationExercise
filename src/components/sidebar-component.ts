@@ -18,6 +18,10 @@ export class SidebarComponent extends BaseComponent {
         await this.categoriesContainer.getByRole('link').filter({ hasText: subCategory }).click();
     }
 
+    async selectBrand(brand: string): Promise<void> {
+        await this.brandsContainer.getByRole("link", { name: brand }).click();
+    }
+
     getCategoriesContainer(): Locator {
         return this.categoriesContainer;
     }

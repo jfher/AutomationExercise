@@ -1,3 +1,4 @@
+import { Brands } from '@data/static/brands';
 import { Categories } from '@data/static/categories';
 import { Products } from '@data/static/products';
 import { test, expect } from '@fixtures/test.fixture';
@@ -80,6 +81,19 @@ test.describe('Products Module', () => {
                 await productFlow.filterByCategory(Categories.women, Categories.dress);
                 await expect(productsPage.getCategoryTitle()).toContainText(Categories.women);
                 await expect(productsPage.getCategoryTitle()).toContainText(Categories.dress);
+            }
+        );
+
+        /**
+         * Requirement : FR-PROD-005
+         * Test Case   : PROD-005
+         * Priority    : Medium
+         */
+        test("[PROD-005] User can filter by brand", { tag: ["@products", "@regression"] },
+            async ({ productFlow, productsPage }) => {
+                await productFlow.filterByBrand(Brands.polo);
+                await expect(productsPage.getCategoryTitle()).toContainText(Brands.polo);
+                await expect(productsPage.getProductCards()).not.toHaveCount(0);
             }
         );
     });

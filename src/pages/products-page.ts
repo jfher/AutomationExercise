@@ -34,6 +34,10 @@ export class ProductsPage extends BasePage {
         await this.sidebarComponent.selectCategory(category, subCategory);
     }
 
+    async selectBrand(brand: string): Promise<void> {
+        await this.sidebarComponent.selectBrand(brand);
+    }
+
     getCategoryTitle(): Locator {
         return this.page.locator(".features_items .title");
     }

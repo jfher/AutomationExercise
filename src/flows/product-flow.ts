@@ -24,4 +24,9 @@ export class ProductFlow {
         await this.productsPage.open();
         await this.productsPage.selectCategory(category, subCategory);
     }
+
+    async filterByBrand(brand: string): Promise<void> {
+        await this.productsPage.open();
+        await this.productsPage.selectBrand(brand);
+    }
 }
