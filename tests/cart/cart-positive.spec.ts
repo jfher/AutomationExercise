@@ -66,5 +66,19 @@ test.describe('Cart Module', () => {
                 await expect(item.getQuantity()).toContainText("4");
             }
         );
+
+        /**
+         * Requirement : FR-CART-005
+         * Test Case   : CART-005
+         * Priority: Medium
+         */
+        test("[CART-005] User can continue shopping", { tag: ["@cart", "@regression"] },
+            async ({ productsPage }) => {
+                await productsPage.open();
+                await productsPage.addFirstProduct();
+                await productsPage.continueShopping();
+                await expect(productsPage.getProductCards()).not.toHaveCount(0);
+            }
+        );
     });
 });
