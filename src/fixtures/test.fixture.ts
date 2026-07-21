@@ -11,17 +11,21 @@ import { AccountDeletedPage } from '@pages/accountDeleted-page';
 import { ProductsPage } from '@pages/products-page';
 import { ProductDetailsPage } from '@pages/product-details-page';
 import { ProductFlow } from '@flows/product-flow';
+import { CartPage } from '@pages/cart-page';
+import { CartFlow } from '@flows/cart-flow';
 
 type Fixtures = {
     loginPage: LoginPage;
     registerPage: RegisterPage;
     productsPage: ProductsPage;
+    cartPage: CartPage;
     productDetailsPage: ProductDetailsPage;
     accountCreatedPage: AccountCreatedPage;
     accountDeletedPage: AccountDeletedPage;
     authenticationFlow: AuthenticationFlow;
     registrationFlow: RegistrationFlow;
     productFlow: ProductFlow;
+    cartFlow: CartFlow;
     validUser: typeof users.validUser;
     randomUser: typeof users.randomUser;
     staticUser: typeof users.staticUser;
@@ -35,6 +39,10 @@ export const test = base.extend<Fixtures>({
 
     registerPage: async ({ page }, use) => {
         await use(new RegisterPage(page));
+    },
+
+    cartPage: async ({ page }, use) => {
+        await use(new CartPage(page));
     },
 
     accountCreatedPage: async ({ page }, use) => {
@@ -55,6 +63,10 @@ export const test = base.extend<Fixtures>({
 
     productFlow: async ({ productsPage }, use) => {
         await use(new ProductFlow(productsPage));
+    },
+
+    cartFlow: async ({ productsPage, cartPage }, use) => {
+        await use(new CartFlow(productsPage, cartPage));
     },
 
     authenticationFlow: async ({ loginPage }, use) => {

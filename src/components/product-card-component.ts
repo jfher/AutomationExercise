@@ -5,15 +5,15 @@ export class ProductCardComponent extends BaseComponent {
 
     private readonly name: Locator;
     private readonly price: Locator;
-    private readonly viewProductButton: Locator;
+    private readonly detailsProductButton: Locator;
     private readonly addToCartButton: Locator;
 
     constructor(page: Page, root: Locator) {
         super(page, root);
         this.name = root.locator('.productinfo p');
         this.price = root.locator('.productinfo h2');
-        this.viewProductButton = root.locator("a[href*='/product_details/']");
-        this.addToCartButton = root.locator("a.add-to-cart");
+        this.detailsProductButton = root.locator("a[href*='/product_details/']");
+        this.addToCartButton = root.locator("a.add-to-cart").first();
     }
 
     getName(): Locator {
@@ -25,15 +25,15 @@ export class ProductCardComponent extends BaseComponent {
     }
 
     getViewProductButton(): Locator {
-        return this.viewProductButton;
+        return this.detailsProductButton;
     }
 
-    async viewProduct(): Promise<void> {
-        await this.viewProductButton.click();
+    async addToCart(): Promise<void> {
+        await this.addToCartButton.click();
     }
 
     async openDetails(): Promise<void> {
-        await this.viewProductButton.click();
+        await this.detailsProductButton.click();
     }
 
 }
