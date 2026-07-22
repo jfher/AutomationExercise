@@ -21,7 +21,7 @@ export class CartPage extends BasePage {
         await this.getItem(0).remove();
     }
 
-    async checkout(): Promise<void> {
+    async proceedToCheckout(): Promise<void> {
         await this.checkoutButton.click();
     }
 

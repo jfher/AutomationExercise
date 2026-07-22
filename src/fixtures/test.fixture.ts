@@ -14,20 +14,24 @@ import { ProductFlow } from '@flows/product-flow';
 import { CartPage } from '@pages/cart-page';
 import { CartFlow } from '@flows/cart-flow';
 import { CheckoutPage } from '@pages/checkout-page';
+import { CheckoutFlow } from '@flows/checkout-flow';
 
 type Fixtures = {
     loginPage: LoginPage;
     registerPage: RegisterPage;
     productsPage: ProductsPage;
     cartPage: CartPage;
+    checkoutPage: CheckoutPage;
     productDetailsPage: ProductDetailsPage;
     accountCreatedPage: AccountCreatedPage;
     accountDeletedPage: AccountDeletedPage;
-    checkoutPage: CheckoutPage;
+
     authenticationFlow: AuthenticationFlow;
     registrationFlow: RegistrationFlow;
     productFlow: ProductFlow;
     cartFlow: CartFlow;
+    checkoutFlow: CheckoutFlow;
+
     validUser: typeof users.validUser;
     randomUser: typeof users.randomUser;
     staticUser: typeof users.staticUser;
@@ -47,6 +51,10 @@ export const test = base.extend<Fixtures>({
         await use(new CartPage(page));
     },
 
+    checkoutPage: async ({ page }, use) => {
+        await use(new CheckoutPage(page));
+    },
+
     accountCreatedPage: async ({ page }, use) => {
         await use(new AccountCreatedPage(page));
     },
@@ -63,10 +71,6 @@ export const test = base.extend<Fixtures>({
         await use(new ProductDetailsPage(page));
     },
 
-    checkoutPage: async ({ page }, use) => {
-        await use(new CheckoutPage(page));
-    },
-
 
     productFlow: async ({ productsPage, productDetailsPage }, use) => {
         await use(new ProductFlow(productsPage, productDetailsPage));
@@ -74,6 +78,10 @@ export const test = base.extend<Fixtures>({
 
     cartFlow: async ({ productsPage, cartPage }, use) => {
         await use(new CartFlow(productsPage, cartPage));
+    },
+
+    checkoutFlow: async ({ checkoutPage, cartFlow, authenticationFlow }, use) => {
+        await use(new CheckoutFlow(authenticationFlow, cartFlow, checkoutPage));
     },
 
     authenticationFlow: async ({ loginPage }, use) => {
