@@ -142,6 +142,39 @@ test.describe('Checkout Module', () => {
                 });
             }
         );
+
+        /**
+         * Requirement : FR-CHK-007
+         * Test Case   : CHK-007
+         * Priority: High
+         */
+        test("[CHK-007] Checkout should confirm the order with the commment", { tag: ["@checkout", "@regression"] },
+            async ({ paymentFlow, paymentDonePage, page }) => {
+
+                const downloadPromise = page.waitForEvent('download', {
+                    timeout: 30000
+                });
+
+                await test.step("Access to payment page with comment", async () => {
+                    await paymentFlow.paymentConfirmationWithComment();
+                });
+
+                await test.step("Confirm payment", async () => {
+                    await paymentFlow.proceedInvoice();
+                });
+
+                await test.step("Download invoice", async () => {
+                    await paymentDonePage.downloadInvoice()
+                });
+
+                await test.step("Verify downloaded file", async () => {
+                    const download = await downloadPromise;
+                    const fileName = download.suggestedFilename();
+                    expect(fileName).toMatch('invoice.txt');
+                });
+            }
+        );
+
     }
     );
 

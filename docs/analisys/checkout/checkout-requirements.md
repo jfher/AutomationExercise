@@ -47,3 +47,9 @@ Users can place an order.
 ### FR-CHK-006
 
 Users receive an order confirmation.
+
+---
+
+### FR-CHK-007
+
+Users add a review to the checkout.

@@ -18,4 +18,8 @@ export class CheckoutFlow {
         await this.cartFlow.proceedCheckout();
     }
 
+    async addComment(comment: string): Promise<void> {
+        await this.checkoutPage.enterComment(comment);
+    }
+
 }

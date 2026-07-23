@@ -7,6 +7,7 @@ export class CheckoutPage extends BasePage {
     readonly billingDetails: Locator;
     readonly reviewOrder: Locator;
     readonly placeOrderButton: Locator;
+    readonly commentInput: Locator;
 
     constructor(page: Page) {
         super(page);
@@ -14,10 +15,15 @@ export class CheckoutPage extends BasePage {
         this.billingDetails = page.locator("#address_invoice");
         this.reviewOrder = page.locator("#cart_info");
         this.placeOrderButton = page.locator('[href="/payment"]');
+        this.commentInput = page.locator('textarea[name="message"]');
     }
 
     async proceedToPayment(): Promise<void> {
         await this.placeOrderButton.click();
+    }
+
+    async enterComment(comment: string): Promise<void> {
+        await this.commentInput.fill(comment);
     }
 
     getOrderProducts(): Locator {

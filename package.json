@@ -13,6 +13,7 @@
     "test:regression": "npx playwright test --grep @regression",
     "test:authentication": "npx playwright test --grep @authentication",
     "test:products": "npx playwright test --grep @products",
+    "test:checkout": "npx playwright test --grep @checkout",
     "test:report": "npx playwright show-report",
     "test:ui": "npx playwright test --ui"
   },
