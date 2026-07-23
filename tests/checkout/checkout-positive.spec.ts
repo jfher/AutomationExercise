@@ -88,5 +88,61 @@ test.describe('Checkout Module', () => {
             }
         );
 
-    });
+        /**
+         * Requirement : FR-CHK-005
+         * Test Case   : CHK-005
+         * Priority: High
+         */
+        test("[CHK-005] Checkout place order should show payment page ", { tag: ["@checkout", "@smoke", "@regression"] },
+            async ({ paymentFlow, paymentDonePage }) => {
+
+                await test.step("Access to payment page", async () => {
+                    await paymentFlow.paymentConfirmation();
+                });
+
+                await test.step("Confirm payment", async () => {
+                    await paymentFlow.proceedInvoice();
+                });
+
+                await test.step("Verify payment page", async () => {
+                    await expect(paymentDonePage.getTitle()).toBeVisible();
+                    await expect(paymentDonePage.getMessageText()).toBeVisible();
+                });
+            }
+        );
+
+        /**
+         * Requirement : FR-CHK-006
+         * Test Case   : CHK-006
+         * Priority: High
+         */
+        test("[CHK-006] Checkout should download invoice after payment", { tag: ["@checkout", "@smoke", "@regression"] },
+            async ({ paymentFlow, paymentDonePage, page }) => {
+
+                const downloadPromise = page.waitForEvent('download', {
+                    timeout: 30000
+                });
+
+                await test.step("Access to payment page", async () => {
+                    await paymentFlow.paymentConfirmation();
+                });
+
+                await test.step("Confirm payment", async () => {
+                    await paymentFlow.proceedInvoice();
+                });
+
+                await test.step("Download invoice", async () => {
+                    await paymentDonePage.downloadInvoice()
+                });
+
+                await test.step("Verify downloaded file", async () => {
+                    const download = await downloadPromise;
+                    const fileName = download.suggestedFilename();
+                    expect(fileName).toMatch('invoice.txt');
+                });
+            }
+        );
+    }
+    );
+
 });

@@ -15,6 +15,9 @@ import { CartPage } from '@pages/cart-page';
 import { CartFlow } from '@flows/cart-flow';
 import { CheckoutPage } from '@pages/checkout-page';
 import { CheckoutFlow } from '@flows/checkout-flow';
+import { PaymentPage } from '@pages/payment-page';
+import { PaymentFlow } from '@flows/payment-flow';
+import { PaymentDonePage } from '@pages/paymentDone-page';
 
 type Fixtures = {
     loginPage: LoginPage;
@@ -22,15 +25,19 @@ type Fixtures = {
     productsPage: ProductsPage;
     cartPage: CartPage;
     checkoutPage: CheckoutPage;
+    paymentPage: PaymentPage;
+
     productDetailsPage: ProductDetailsPage;
     accountCreatedPage: AccountCreatedPage;
     accountDeletedPage: AccountDeletedPage;
+    paymentDonePage: PaymentDonePage;
 
     authenticationFlow: AuthenticationFlow;
     registrationFlow: RegistrationFlow;
     productFlow: ProductFlow;
     cartFlow: CartFlow;
     checkoutFlow: CheckoutFlow;
+    paymentFlow: PaymentFlow;
 
     validUser: typeof users.validUser;
     randomUser: typeof users.randomUser;
@@ -55,12 +62,8 @@ export const test = base.extend<Fixtures>({
         await use(new CheckoutPage(page));
     },
 
-    accountCreatedPage: async ({ page }, use) => {
-        await use(new AccountCreatedPage(page));
-    },
-
-    accountDeletedPage: async ({ page }, use) => {
-        await use(new AccountDeletedPage(page));
+    paymentPage: async ({ page }, use) => {
+        await use(new PaymentPage(page));
     },
 
     productsPage: async ({ page }, use) => {
@@ -71,6 +74,17 @@ export const test = base.extend<Fixtures>({
         await use(new ProductDetailsPage(page));
     },
 
+    accountCreatedPage: async ({ page }, use) => {
+        await use(new AccountCreatedPage(page));
+    },
+
+    accountDeletedPage: async ({ page }, use) => {
+        await use(new AccountDeletedPage(page));
+    },
+
+    paymentDonePage: async ({ page }, use) => {
+        await use(new PaymentDonePage(page));
+    },
 
     productFlow: async ({ productsPage, productDetailsPage }, use) => {
         await use(new ProductFlow(productsPage, productDetailsPage));
@@ -90,6 +104,10 @@ export const test = base.extend<Fixtures>({
 
     registrationFlow: async ({ registerPage, accountDeletedPage, accountCreatedPage }, use) => {
         await use(new RegistrationFlow(registerPage, accountDeletedPage, accountCreatedPage));
+    },
+
+    paymentFlow: async ({ paymentPage, checkoutPage, checkoutFlow }, use) => {
+        await use(new PaymentFlow(paymentPage, checkoutPage, checkoutFlow));
     },
 
     validUser: async ({ }, use) => {
