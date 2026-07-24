@@ -70,15 +70,14 @@ test.describe('Authentication Module', () => {
          * Priority   : Medium
          */
         test('[AUTH-007] Registered users can delete their account', { tag: ['@regression', '@authentication'] },
-            async ({ registrationFlow, registerPage, accountCreatedPage, accountDeletedPage, randomUser }) => {
-
+            async ({ registrationFlow, registerPage, accountCreatedPage, accountDeletedPage, testUser }) => {
                 await test.step('Signup', async () => {
-                    await registrationFlow.signup(randomUser);
+                    await registrationFlow.signup(testUser);
                     await registerPage.isDisplayed();
                 })
 
                 await test.step('Create Account', async () => {
-                    await registrationFlow.createAccount(randomUser);
+                    await registrationFlow.createAccount(testUser);
                     await expect(accountCreatedPage.getTitle()).toBeVisible();
                 })
 

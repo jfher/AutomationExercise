@@ -3,20 +3,29 @@ import { test, expect } from '@fixtures/test.fixture';
 test.describe('Checkout Module', () => {
 
     test.describe('Positive Scenarios', () => {
+
+        test.describe.configure({
+            mode: 'serial'
+        });
+
         /**
          * Requirement : FR-CHK-001
          * Test Case   : CHK-001
          * Priority: High
          */
         test("[CHK-001] Logged users can access checkout", { tag: ["@checkout", "@smoke", "@regression"] },
-            async ({ checkoutFlow, checkoutPage, staticUser }) => {
+            async ({ checkoutFlow, checkoutPage }) => {
 
                 await test.step("Access to checkout page", async () => {
-                    await checkoutFlow.completeCheckout(staticUser);
+                    await checkoutFlow.completeCheckout();
                 });
 
                 await test.step("Verify checkout", async () => {
                     await expect(checkoutPage.getOrderProducts()).toHaveCount(2);
+                });
+
+                await test.step("Clear cart", async () => {
+                    await checkoutFlow.clearCart();
                 });
             }
         );
@@ -30,7 +39,7 @@ test.describe('Checkout Module', () => {
             async ({ checkoutFlow, checkoutPage, staticUser }) => {
 
                 await test.step("Access to checkout page", async () => {
-                    await checkoutFlow.completeCheckout(staticUser);
+                    await checkoutFlow.completeCheckout();
                 });
 
                 await test.step("Verify delivery address data", async () => {
@@ -40,6 +49,10 @@ test.describe('Checkout Module', () => {
                     await expect(checkoutPage.getAddressCompany()).toHaveText(staticUser.addressInformation.company || '');
                     await expect(checkoutPage.getAddressCountry()).toHaveText(staticUser.addressInformation.country);
                     await expect(checkoutPage.getAddressPhone()).toHaveText(staticUser.addressInformation.mobileNumber);
+                });
+
+                await test.step("Clear cart", async () => {
+                    await checkoutFlow.clearCart();
                 });
             }
         );
@@ -53,7 +66,7 @@ test.describe('Checkout Module', () => {
             async ({ checkoutFlow, checkoutPage, staticUser }) => {
 
                 await test.step("Access to checkout page", async () => {
-                    await checkoutFlow.completeCheckout(staticUser);
+                    await checkoutFlow.completeCheckout();
                 });
 
                 await test.step("Verify billing address data", async () => {
@@ -64,6 +77,10 @@ test.describe('Checkout Module', () => {
                     await expect(checkoutPage.getBillingCountry()).toHaveText(staticUser.addressInformation.country);
                     await expect(checkoutPage.getBillingPhone()).toHaveText(staticUser.addressInformation.mobileNumber);
                 });
+
+                await test.step("Clear cart", async () => {
+                    await checkoutFlow.clearCart();
+                });
             }
         );
 
@@ -73,10 +90,10 @@ test.describe('Checkout Module', () => {
          * Priority: High
          */
         test("[CHK-004] Checkout review order should match the cart products", { tag: ["@checkout", "@regression"] },
-            async ({ checkoutFlow, checkoutPage, staticUser }) => {
+            async ({ checkoutFlow, checkoutPage }) => {
 
                 await test.step("Access to checkout page", async () => {
-                    await checkoutFlow.completeCheckout(staticUser);
+                    await checkoutFlow.completeCheckout();
                 });
 
                 await test.step("Verify products data", async () => {
@@ -84,6 +101,10 @@ test.describe('Checkout Module', () => {
                     await expect(checkoutPage.getOrderItem(0).getQuantity()).toContainText("1");
                     await expect(checkoutPage.getOrderItem(0).getPrice()).toContainText("500");
                     await expect(checkoutPage.getOrderItem(0).getTotal()).toContainText("500");
+                });
+
+                await test.step("Clear cart", async () => {
+                    await checkoutFlow.clearCart();
                 });
             }
         );

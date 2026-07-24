@@ -41,6 +41,7 @@ type Fixtures = {
 
     validUser: typeof users.validUser;
     randomUser: typeof users.randomUser;
+    testUser: typeof users.testUser;
     staticUser: typeof users.staticUser;
 };
 
@@ -94,8 +95,8 @@ export const test = base.extend<Fixtures>({
         await use(new CartFlow(productsPage, cartPage));
     },
 
-    checkoutFlow: async ({ checkoutPage, cartFlow, authenticationFlow }, use) => {
-        await use(new CheckoutFlow(authenticationFlow, cartFlow, checkoutPage));
+    checkoutFlow: async ({ checkoutPage, cartFlow }, use) => {
+        await use(new CheckoutFlow(cartFlow, checkoutPage));
     },
 
     authenticationFlow: async ({ loginPage }, use) => {
@@ -120,6 +121,10 @@ export const test = base.extend<Fixtures>({
 
     staticUser: async ({ }, use) => {
         await use(users.staticUser);
+    },
+
+    testUser: async ({ }, use) => {
+        await use(users.testUser);
     }
 });
 

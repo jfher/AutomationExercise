@@ -25,6 +25,10 @@ export class CartPage extends BasePage {
         await this.checkoutButton.click();
     }
 
+    async clearCart(): Promise<void> {
+        await this.removeFirstItem();
+    }
+
     getItems(): Locator {
         return this.cartItems;
     }

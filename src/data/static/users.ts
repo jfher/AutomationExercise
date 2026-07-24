@@ -14,5 +14,9 @@ export const users = {
 
     staticUser: new UserBuilder()
         .withAllUserData(JSON.parse(process.env.USER_VALID!) as User)
-        .build()
+        .build(),
+
+    testUser: new UserBuilder()
+        .withAllUserData(JSON.parse(process.env.USER_TEST!) as User)
+        .build(),
 };

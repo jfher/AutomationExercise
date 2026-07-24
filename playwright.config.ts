@@ -9,7 +9,7 @@ dotenv.config()
 
 export default defineConfig({
     testDir: './tests',
-    fullyParallel: true,
+    fullyParallel: false,
     retries: process.env.CI ? 2 : 0,
     workers: process.env.CI ? 2 : 4,
     reporter: Reporters as any,
@@ -27,8 +27,10 @@ export default defineConfig({
         timeout: Timeouts.expect
     },
     projects: [
+        Browsers.setup,
+        Browsers.authTests,
         Browsers.chromium,
-        Browsers.firefox,
-        Browsers.webkit,
+        // Browsers.firefox,
+        // Browsers.webkit,
     ]
 });

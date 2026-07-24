@@ -12,3 +12,5 @@ coverage/
 docs/04-requirements-analysis.md
 src/core/actions
 docs/architecture.md
+
+playwright/.auth/

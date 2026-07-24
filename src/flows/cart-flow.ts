@@ -10,6 +10,7 @@ export class CartFlow {
 
     async addFirstProductToCart(): Promise<void> {
         await this.productsPage.open();
+        await this.clearCart();
         await this.productsPage.addFirstProduct();
         await this.productsPage.viewCartModal();
     }
@@ -20,5 +21,11 @@ export class CartFlow {
 
     async proceedCheckout(): Promise<void> {
         await this.cartPage.proceedToCheckout();
+    }
+
+    async clearCart(): Promise<void> {
+        if (await this.cartPage.getItems().count() > 0) {
+            await this.cartPage.clearCart();
+        }
     }
 }

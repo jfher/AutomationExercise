@@ -32,6 +32,11 @@ export class ProductFlow {
         await this.productsPage.selectBrand(brand);
     }
 
+    async addProduct(): Promise<void> {
+        await this.productsPage.open();
+        await this.productsPage.addFirstProduct();
+    }
+
     async addProductWithQuantity(quantity: number): Promise<void> {
         await this.productsPage.open();
         await this.productsPage.getProductCard(0).openDetails();
