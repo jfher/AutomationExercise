@@ -9,4 +9,4 @@
 | CONTACT-003 | Upload file | Low | ❌ | ✅ |
 | CONTACT-004 | Accept confirmation dialog | Medium | ❌ | ✅ |
 | CONTACT-005 | Verify success message | Medium | ✅ | ✅ |
-| CONTACT-006 | Required field validation | Low | ✅ | ✅ |
+| CONTACT-006 | Required field validation | Low | ❌ | ✅ |

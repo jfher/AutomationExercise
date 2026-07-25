@@ -150,5 +150,18 @@ test.describe('Contact Module', () => {
                 })
             }
         )
+
+        test('[CONTACT-006] Contact form should verify required field validation', { tag: ['@contact', '@regression'] },
+            async ({ contactFlow }) => {
+
+                await test.step('Navigate to contact us page', async () => {
+                    await contactFlow.openContact();
+                })
+
+                await test.step('Send the form', async () => {
+                    await contactFlow.submitForm();
+                })
+            }
+        )
     })
 })
