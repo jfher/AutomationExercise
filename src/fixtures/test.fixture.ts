@@ -3,7 +3,6 @@ import { test as base, expect } from '@playwright/test';
 import { LoginPage } from '@pages/login-page';
 import { AuthenticationFlow } from '@flows/authentication-flow';
 
-import { users } from '@data/static/users';
 import { RegistrationFlow } from '@flows/registration-flow';
 import { RegisterPage } from '@pages/register-page';
 import { AccountCreatedPage } from '@pages/accountCreated-page';
@@ -18,6 +17,11 @@ import { CheckoutFlow } from '@flows/checkout-flow';
 import { PaymentPage } from '@pages/payment-page';
 import { PaymentFlow } from '@flows/payment-flow';
 import { PaymentDonePage } from '@pages/paymentDone-page';
+import { ContactPage } from '@pages/contact-page';
+import { ContactFlow } from '@flows/contact-flow';
+
+import { users } from '@data/static/users';
+import { contacts } from '@data/static/contact';
 
 type Fixtures = {
     loginPage: LoginPage;
@@ -26,6 +30,7 @@ type Fixtures = {
     cartPage: CartPage;
     checkoutPage: CheckoutPage;
     paymentPage: PaymentPage;
+    contactPage: ContactPage;
 
     productDetailsPage: ProductDetailsPage;
     accountCreatedPage: AccountCreatedPage;
@@ -38,11 +43,13 @@ type Fixtures = {
     cartFlow: CartFlow;
     checkoutFlow: CheckoutFlow;
     paymentFlow: PaymentFlow;
+    contactFlow: ContactFlow;
 
     validUser: typeof users.validUser;
     randomUser: typeof users.randomUser;
     testUser: typeof users.testUser;
     staticUser: typeof users.staticUser;
+    contactStatic: typeof contacts.valid;
 };
 
 export const test = base.extend<Fixtures>({
@@ -69,6 +76,10 @@ export const test = base.extend<Fixtures>({
 
     productsPage: async ({ page }, use) => {
         await use(new ProductsPage(page));
+    },
+
+    contactPage: async ({ page }, use) => {
+        await use(new ContactPage(page));
     },
 
     productDetailsPage: async ({ page }, use) => {
@@ -111,6 +122,10 @@ export const test = base.extend<Fixtures>({
         await use(new PaymentFlow(paymentPage, checkoutPage, checkoutFlow));
     },
 
+    contactFlow: async ({ contactPage }, use) => {
+        await use(new ContactFlow(contactPage));
+    },
+
     validUser: async ({ }, use) => {
         await use(users.validUser);
     },
@@ -125,6 +140,10 @@ export const test = base.extend<Fixtures>({
 
     testUser: async ({ }, use) => {
         await use(users.testUser);
+    },
+
+    contactStatic: async ({ }, use) => {
+        await use(contacts.valid);
     }
 });
 

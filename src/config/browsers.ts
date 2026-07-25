@@ -15,9 +15,21 @@ export const Browsers = {
         }
     },
 
+    contactTests: {
+        name: 'contactTests',
+        testMatch: /contact\/.*\.spec\.ts/,
+        use: {
+            ...devices["Desktop Chrome"],
+            storageState: undefined
+        }
+    },
+
     chromium: {
         name: "chromium",
-        testIgnore: /authentication\/.*/,
+        testIgnore: [
+            /authentication\/.*/,
+            /contact\/.*/
+        ],
         use: {
             ...devices["Desktop Chrome"],
             storageState: 'playwright/.auth/customer.json'
@@ -27,7 +39,10 @@ export const Browsers = {
 
     firefox: {
         name: "firefox",
-        testIgnore: /authentication\/.*/,
+        testIgnore: [
+            /authentication\/.*/,
+            /contact\/.*/
+        ],
         use: {
             ...devices["Desktop Firefox"],
             storageState: 'playwright/.auth/customer.json'
@@ -37,7 +52,10 @@ export const Browsers = {
 
     webkit: {
         name: "webkit",
-        testIgnore: /authentication\/.*/,
+        testIgnore: [
+            /authentication\/.*/,
+            /contact\/.*/
+        ],
         use: {
             ...devices["Desktop Safari"],
             storageState: 'playwright/.auth/customer.json'

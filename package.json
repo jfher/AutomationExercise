@@ -15,6 +15,7 @@
     "test:cart": "npx playwright test --grep @cart",
     "test:products": "npx playwright test --grep @products",
     "test:checkout": "npx playwright test --grep @checkout",
+    "test:contact": "npx playwright test --grep @contact",
     "test:report": "npx playwright show-report",
     "test:ui": "npx playwright test --ui"
   },
