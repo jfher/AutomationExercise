@@ -10,6 +10,7 @@ export class ContactPage extends BasePage {
     readonly messageInput: Locator;
     readonly uploadFileInput: Locator;
     readonly submitButton: Locator;
+    readonly successMessage: Locator;
 
     constructor(page: Page) {
         super(page);
@@ -20,6 +21,7 @@ export class ContactPage extends BasePage {
         this.messageInput = page.locator('[data-qa=message]');
         this.uploadFileInput = page.locator('input[name="upload_file"]');
         this.submitButton = page.locator('[data-qa=submit-button]');
+        this.successMessage = page.locator('div.status.alert.alert-success');
     }
 
     async open(): Promise<void> {
@@ -28,5 +30,9 @@ export class ContactPage extends BasePage {
 
     async uploadFile(path: string) {
         await this.uploadFileInput.setInputFiles(path);
+    }
+
+    getSuccessMessage(): Locator {
+        return this.successMessage
     }
 }
