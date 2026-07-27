@@ -1,9 +1,15 @@
 import { ApiClient } from "../client/api-client";
-import { ProductsResponse } from "../models/product";
+import { ProductsResponse, SearchProductsRequest } from "../models/product";
 
 export class ProductsApi extends ApiClient {
     async getProducts(): Promise<ProductsResponse> {
-        const res = await this.get("/api/productsList");
-        return this.parse<ProductsResponse>(res);
+        const response = await this.get("/productsList");
+        console.log(response, 'api');
+        return this.parse<ProductsResponse>(response);
+    }
+
+    async searchProducts(request: SearchProductsRequest): Promise<ProductsResponse> {
+        const response = await this.post("/searchProduct", request);
+        return this.parse<ProductsResponse>(response);
     }
 }

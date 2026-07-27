@@ -15,3 +15,7 @@ export interface ProductsResponse {
     responseCode: number;
     products: Product[];
 }
+
+export interface SearchProductsRequest {
+    search_product: string;
+}

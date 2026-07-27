@@ -24,11 +24,21 @@ export const Browsers = {
         }
     },
 
+    apiTests: {
+        name: 'apiTests',
+        testMatch: /api\/.*\.spec\.ts/,
+        use: {
+            ...devices["Desktop Chrome"],
+            storageState: undefined
+        }
+    },
+
     chromium: {
         name: "chromium",
         testIgnore: [
             /authentication\/.*/,
-            /contact\/.*/
+            /contact\/.*/,
+            /api\/.*/,
         ],
         use: {
             ...devices["Desktop Chrome"],
@@ -41,7 +51,8 @@ export const Browsers = {
         name: "firefox",
         testIgnore: [
             /authentication\/.*/,
-            /contact\/.*/
+            /contact\/.*/,
+            /api\/.*/,
         ],
         use: {
             ...devices["Desktop Firefox"],
@@ -54,7 +65,8 @@ export const Browsers = {
         name: "webkit",
         testIgnore: [
             /authentication\/.*/,
-            /contact\/.*/
+            /contact\/.*/,
+            /api\/.*/,
         ],
         use: {
             ...devices["Desktop Safari"],

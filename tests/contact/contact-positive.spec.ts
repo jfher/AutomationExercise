@@ -5,6 +5,11 @@ test.describe('Contact Module', () => {
 
     test.describe('Positive Scenarios', () => {
 
+        /**
+         * Requirement : FR-CONTACT-001
+         * Test Case   : CONTACT-001
+         * Priority: Medium
+         */
         test('[CONTACT-001] User can open Contact Us page', { tag: ['@contact', '@smoke', '@regression'] },
             async ({ contactFlow, contactPage, page }) => {
                 await test.step('Navigate to contact us page', async () => {
@@ -27,6 +32,11 @@ test.describe('Contact Module', () => {
             }
         )
 
+        /**
+         * Requirement : FR-CONTACT-002
+         * Test Case   : CONTACT-002
+         * Priority: Medium
+         */
         test('[CONTACT-002] User can fill the contact form and submit it', { tag: ['@contact', '@smoke', '@regression'] },
             async ({ contactFlow, contactStatic, page }) => {
 
@@ -44,6 +54,11 @@ test.describe('Contact Module', () => {
             }
         )
 
+        /**
+         * Requirement : FR-CONTACT-003
+         * Test Case   : CONTACT-003
+         * Priority: Low
+         */
         test('[CONTACT-003] User can attach a fake file to the contact form', { tag: ['@contact', '@regression'] },
             async ({ contactFlow, contactStatic }) => {
 
@@ -69,6 +84,11 @@ test.describe('Contact Module', () => {
             }
         )
 
+        /**
+         * Requirement : FR-CONTACT-003
+         * Test Case   : CONTACT-003
+         * Priority: Low
+         */
         test('[CONTACT-003.1] User can attach a file to the contact form', { tag: ['@contact', '@regression'] },
             async ({ contactFlow, contactStatic }) => {
 
@@ -94,6 +114,11 @@ test.describe('Contact Module', () => {
             }
         )
 
+        /**
+         * Requirement : FR-CONTACT-004
+         * Test Case   : CONTACT-004
+         * Priority: Medium
+         */
         test('[CONTACT-004] User can send the form and confirm the submission', { tag: ['@contact', '@regression'] },
             async ({ contactFlow, contactStatic, page }) => {
 
@@ -120,6 +145,11 @@ test.describe('Contact Module', () => {
             }
         )
 
+        /**
+         * Requirement : FR-CONTACT-005
+         * Test Case   : CONTACT-005
+         * Priority: Medium
+         */
         test('[CONTACT-005] User can verify success message after confirming submission', { tag: ['@contact', '@smoke', '@regression'] },
             async ({ contactFlow, contactStatic, page, contactPage }) => {
 
@@ -151,6 +181,11 @@ test.describe('Contact Module', () => {
             }
         )
 
+        /**
+         * Requirement : FR-CONTACT-006
+         * Test Case   : CONTACT-006
+         * Priority: Low
+         */
         test('[CONTACT-006] Contact form should verify required field validation', { tag: ['@contact', '@regression'] },
             async ({ contactFlow }) => {
 

@@ -2,11 +2,11 @@
 
 | Requirement | Test Case | Automated |
 | -------------- | ----------- | ----------- |
-| FR-API-001 | API-001 | ⏳ |
-| FR-API-002 | API-002 | ⏳ |
-| FR-API-003 | API-003 | ⏳ |
-| FR-API-004 | API-004 | ⏳ |
-| FR-API-005 | API-005 | ⏳ |
+| FR-API-001 | API-001 | ✅ |
+| FR-API-002 | API-002 | ✅ |
+| FR-API-003 | API-003 | ✅ |
+| FR-API-004 | API-004 | ✅ |
+| FR-API-005 | API-005 | ✅ |
 
 ---
 
