@@ -14,6 +14,7 @@ function getEnv(name: string): string {
 
 export const Environment = {
     baseUrl: getEnv('BASE_URL'),
+    apiBaseUrl: getEnv('API_URL'),
     headless: getEnv('HEADLESS') === 'true',
     defaultTimeout: Number(getEnv('DEFAULT_TIMEOUT')),
     expectTimeout: Number(getEnv('EXPECT_TIMEOUT'))
