@@ -1,9 +1,10 @@
 node_modules/
 playwright-report/
-reports/
+/reports/
 test-results/
 blob-report/
 coverage/
+docs/reports/authentication-summary.md
 
 .env
 
@@ -15,8 +16,11 @@ docs/architecture.md
 
 playwright/.auth/
 
-
 .github/workflows/ci.yml
 .github/workflows/manual.yml
 .github/workflows/regression.yml
 .github/workflows/smoke.yml
+
+screenshots/
+videos/
+traces/

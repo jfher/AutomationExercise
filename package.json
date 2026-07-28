@@ -28,7 +28,9 @@
         "docker:test": "docker compose -f docker/docker-compose.yml up --build",
         "docker:smoke": "docker compose -f docker/docker-compose.yml run --rm playwright npx playwright test --grep @smoke",
         "docker:regression": "docker compose -f docker/docker-compose.yml run --rm playwright npx playwright test --grep @regression",
-        "docker:api": "docker compose -f docker/docker-compose.yml run --rm playwright npx playwright test tests/api"
+        "docker:api": "docker compose -f docker/docker-compose.yml run --rm playwright npx playwright test tests/api",
+        "report:merge": "playwright merge-reports blob-report",
+        "report:junit": "cat test-results/junit.xml"
     },
     "lint-staged": {
         "*.{ts,js}": [
