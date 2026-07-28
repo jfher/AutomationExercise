@@ -4,7 +4,6 @@ import { ProductsResponse, SearchProductsRequest } from "../models/product";
 export class ProductsApi extends ApiClient {
     async getProducts(): Promise<ProductsResponse> {
         const response = await this.get("/productsList");
-        console.log(response, 'api');
         return this.parse<ProductsResponse>(response);
     }
 
