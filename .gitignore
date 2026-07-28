@@ -14,3 +14,9 @@ src/core/actions
 docs/architecture.md
 
 playwright/.auth/
+
+
+.github/workflows/ci.yml
+.github/workflows/manual.yml
+.github/workflows/regression.yml
+.github/workflows/smoke.yml
