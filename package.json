@@ -24,7 +24,11 @@
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
         "format": "prettier . --write",
-        "format:check": "prettier . --check"
+        "format:check": "prettier . --check",
+        "docker:test": "docker compose -f docker/docker-compose.yml up --build",
+        "docker:smoke": "docker compose -f docker/docker-compose.yml run --rm playwright npx playwright test --grep @smoke",
+        "docker:regression": "docker compose -f docker/docker-compose.yml run --rm playwright npx playwright test --grep @regression",
+        "docker:api": "docker compose -f docker/docker-compose.yml run --rm playwright npx playwright test tests/api"
     },
     "lint-staged": {
         "*.{ts,js}": [

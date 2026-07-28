@@ -1,0 +1,17 @@
+node_modules
+
+playwright-report
+
+blob-report
+
+coverage
+
+.git
+
+.vscode
+
+.idea
+
+test-results
+
+dist
