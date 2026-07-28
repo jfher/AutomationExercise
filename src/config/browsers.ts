@@ -24,6 +24,15 @@ export const Browsers = {
         }
     },
 
+    integrationTests: {
+        name: 'integrationTests',
+        testMatch: /integration\/.*\.spec\.ts/,
+        use: {
+            ...devices["Desktop Chrome"],
+            storageState: undefined
+        }
+    },
+
     apiTests: {
         name: 'apiTests',
         testMatch: /api\/.*\.spec\.ts/,
@@ -39,6 +48,7 @@ export const Browsers = {
             /authentication\/.*/,
             /contact\/.*/,
             /api\/.*/,
+            /integration\/.*/
         ],
         use: {
             ...devices["Desktop Chrome"],
@@ -53,6 +63,7 @@ export const Browsers = {
             /authentication\/.*/,
             /contact\/.*/,
             /api\/.*/,
+            /integration\/.*/
         ],
         use: {
             ...devices["Desktop Firefox"],
@@ -67,6 +78,7 @@ export const Browsers = {
             /authentication\/.*/,
             /contact\/.*/,
             /api\/.*/,
+            /integration\/.*/
         ],
         use: {
             ...devices["Desktop Safari"],

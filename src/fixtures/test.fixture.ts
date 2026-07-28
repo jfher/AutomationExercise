@@ -1,4 +1,4 @@
-import { test as base, expect } from '@playwright/test';
+import { test as base, expect, request } from '@playwright/test';
 
 import { LoginPage } from '@pages/login-page';
 import { AuthenticationFlow } from '@flows/authentication-flow';
@@ -22,6 +22,9 @@ import { ContactFlow } from '@flows/contact-flow';
 
 import { users } from '@data/static/users';
 import { contacts } from '@data/static/contact';
+import { ProductsApi } from '@api/endpoints/products-api';
+import { AuthApi } from '@api/endpoints/auth-api';
+import { Environment } from '@config/environment';
 
 type Fixtures = {
     loginPage: LoginPage;
@@ -50,6 +53,12 @@ type Fixtures = {
     testUser: typeof users.testUser;
     staticUser: typeof users.staticUser;
     contactStatic: typeof contacts.valid;
+
+
+    //* API FIXTURES *//
+    productsApi: ProductsApi;
+    authApi: AuthApi;
+    userApi: typeof users.apiUser;
 };
 
 export const test = base.extend<Fixtures>({
@@ -144,7 +153,25 @@ export const test = base.extend<Fixtures>({
 
     contactStatic: async ({ }, use) => {
         await use(contacts.valid);
-    }
+    },
+
+    //* API FIXTURES*/
+
+    productsApi: async ({ }, use) => {
+        const context = await request.newContext({
+            baseURL: Environment.apiBaseUrl
+        });
+        await use(new ProductsApi(context));
+        await context.dispose();
+    },
+
+    authApi: async ({ request }, use) => {
+        await use(new AuthApi(request));
+    },
+
+    userApi: async ({ }, use) => {
+        await use(users.apiUser);
+    },
 });
 
 export { expect };

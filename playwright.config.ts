@@ -29,6 +29,7 @@ export default defineConfig({
     projects: [
         Browsers.setup,
         Browsers.authTests,
+        Browsers.integrationTests,
         Browsers.apiTests,
         Browsers.contactTests,
         Browsers.chromium,
