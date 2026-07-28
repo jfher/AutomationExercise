@@ -1,58 +1,74 @@
 {
-  "name": "automationexercise-playwright-framework",
-  "version": "1.0.0",
-  "description": "A QA analysis on the ecommerce simulator web application usign playwright and typescript",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs",
-    "test": "tests"
-  },
-  "scripts": {
-    "test": "npx playwright test",
-    "test:smoke": "npx playwright test --grep @smoke",
-    "test:regression": "npx playwright test --grep @regression",
-    "test:authentication": "npx playwright test --grep @authentication",
-    "test:cart": "npx playwright test --grep @cart",
-    "test:products": "npx playwright test --grep @products",
-    "test:checkout": "npx playwright test --grep @checkout",
-    "test:contact": "npx playwright test --grep @contact",
-    "test:report": "npx playwright show-report",
-    "test:ui": "npx playwright test --ui"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jfher/AutomationExercise.git"
-  },
-  "keywords": [
-    "playwright",
-    "typescript",
-    "automation",
-    "qa",
-    "testing",
-    "allure",
-    "faker"
-  ],
-  "author": "Luis Fernando Aruquipa Gamarra",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/jfher/AutomationExercise/issues"
-  },
-  "homepage": "https://github.com/jfher/AutomationExercise#readme",
-  "devDependencies": {
-    "@faker-js/faker": "^10.5.0",
-    "@playwright/test": "^1.61.1",
-    "@types/node": "^26.1.1",
-    "cross-env": "^10.1.0",
-    "eslint": "^10.7.0",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-playwright": "^2.10.5",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.4.0",
-    "prettier": "^3.9.5",
-    "typescript": "^7.0.2"
-  },
-  "dependencies": {
-    "dotenv": "^17.4.2"
-  }
+    "name": "automationexercise-playwright-framework",
+    "version": "1.0.0",
+    "description": "A QA analysis on the ecommerce simulator web application usign playwright and typescript",
+    "main": "index.js",
+    "directories": {
+        "doc": "docs",
+        "test": "tests"
+    },
+    "scripts": {
+        "test": "npx playwright test",
+        "test:headed": "playwright test --headed",
+        "test:ui": "playwright test --ui",
+        "test:smoke": "npx playwright test --grep @smoke",
+        "test:regression": "npx playwright test --grep @regression",
+        "test:authentication": "npx playwright test --grep @authentication",
+        "test:cart": "npx playwright test --grep @cart",
+        "test:products": "npx playwright test --grep @products",
+        "test:checkout": "npx playwright test --grep @checkout",
+        "test:contact": "npx playwright test --grep @contact",
+        "test:api": "npx playwright test --grep @api",
+        "test:integration": "npx playwright test --grep @integration",
+        "report": "npx playwright show-report",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "format": "prettier . --write",
+        "format:check": "prettier . --check"
+    },
+    "lint-staged": {
+        "*.{ts,js}": [
+            "eslint --fix",
+            "prettier --write"
+        ],
+        "*.{json,md,yml}": [
+            "prettier --write"
+        ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jfher/AutomationExercise.git"
+    },
+    "keywords": [
+        "playwright",
+        "typescript",
+        "automation",
+        "qa",
+        "testing",
+        "allure",
+        "faker"
+    ],
+    "author": "Luis Fernando Aruquipa Gamarra",
+    "license": "ISC",
+    "type": "commonjs",
+    "bugs": {
+        "url": "https://github.com/jfher/AutomationExercise/issues"
+    },
+    "homepage": "https://github.com/jfher/AutomationExercise#readme",
+    "devDependencies": {
+        "@faker-js/faker": "^10.5.0",
+        "@playwright/test": "^1.61.1",
+        "@types/node": "^26.1.1",
+        "cross-env": "^10.1.0",
+        "eslint": "^10.7.0",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-playwright": "^2.10.5",
+        "husky": "^9.1.7",
+        "lint-staged": "^16.4.0",
+        "prettier": "^3.9.5",
+        "typescript": "^7.0.2"
+    },
+    "dependencies": {
+        "dotenv": "^17.4.2"
+    }
 }
