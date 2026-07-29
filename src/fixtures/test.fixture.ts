@@ -26,8 +26,11 @@ import { ProductsApi } from '@api/endpoints/products-api';
 import { AuthApi } from '@api/endpoints/auth-api';
 import { Environment } from '@config/environment';
 import { AxeHelper } from '@utils/axe/axe-helper';
+import { VisualHelper } from '@utils/visual/visual-helper';
+import { HomePage } from '@pages/home-page';
 
 type Fixtures = {
+    homePage: HomePage;
     loginPage: LoginPage;
     registerPage: RegisterPage;
     productsPage: ProductsPage;
@@ -62,9 +65,14 @@ type Fixtures = {
     userApi: typeof users.apiUser;
 
     axe: AxeHelper;
+    visual: VisualHelper;
 };
 
 export const test = base.extend<Fixtures>({
+
+    homePage: async ({ page }, use) => {
+        await use(new HomePage(page));
+    },
 
     loginPage: async ({ page }, use) => {
         await use(new LoginPage(page));
@@ -178,6 +186,10 @@ export const test = base.extend<Fixtures>({
 
     axe: async ({ page }, use) => {
         await use(new AxeHelper(page));
+    },
+
+    visual: async ({ page }, use) => {
+        await use(new VisualHelper(page));
     },
 });
 

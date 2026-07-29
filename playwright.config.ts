@@ -35,7 +35,8 @@ export default defineConfig({
         Browsers.apiTests,
         Browsers.contactTests,
         Browsers.chromium,
+        Browsers.visualTests,
         // Browsers.firefox,
         // Browsers.webkit,
-    ]
+    ],
 });

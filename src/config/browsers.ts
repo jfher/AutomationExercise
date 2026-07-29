@@ -6,6 +6,16 @@ export const Browsers = {
         testMatch: /auth\.setup\.ts/
     },
 
+
+    visualTests: {
+        name: 'visualTests',
+        testMatch: /visual\/.*\.spec\.ts/,
+        use: {
+            ...devices["Desktop Chrome"],
+            storageState: undefined
+        }
+    },
+
     authTests: {
         name: 'authTests',
         testMatch: /authentication\/(positive|negative)\/.*\.spec\.ts/,
@@ -58,7 +68,8 @@ export const Browsers = {
             /contact\/.*/,
             /api\/.*/,
             /integration\/.*/,
-            /a11y\/.*/
+            /a11y\/.*/,
+            /visual\/.*/
         ],
         use: {
             ...devices["Desktop Chrome"],
@@ -74,7 +85,8 @@ export const Browsers = {
             /contact\/.*/,
             /api\/.*/,
             /integration\/.*/,
-            /a11y\/.*/
+            /a11y\/.*/,
+            /visual\/.*/
         ],
         use: {
             ...devices["Desktop Firefox"],
@@ -90,7 +102,8 @@ export const Browsers = {
             /contact\/.*/,
             /api\/.*/,
             /integration\/.*/,
-            /a11y\/.*/
+            /a11y\/.*/,
+            /visual\/.*/
         ],
         use: {
             ...devices["Desktop Safari"],

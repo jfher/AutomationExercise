@@ -22,6 +22,8 @@ on:
           - api
           - integration
           - full
+          - a11y
+          - visual
 
 jobs:
   tests:
@@ -67,6 +69,10 @@ jobs:
               a11y)
 
                 npm run test:a11y;;
+
+              visual)
+
+                npm run test:visual;;
 
               regression)
 

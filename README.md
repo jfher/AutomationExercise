@@ -99,6 +99,7 @@ Designed to demonstrate production-ready UI, API, Integration and Accessibility 
   - [Docker Execution](#docker-execution)
   - [Project Structure](#project-structure-1)
   - [Accessibility Report](#accessibility-report)
+  - [Visual Comparison Testing](#visual-comparison-testing)
 - [Roadmap](#roadmap)
   - [Completed](#completed)
   - [Future Improvements](#future-improvements)
@@ -1134,6 +1135,30 @@ docs/images/accessibility.png
 ```
 
 ---
+
+## Visual Comparison Testing
+
+This framework uses Playwright native visual comparisons.
+
+Features:
+
+- Full page screenshots
+- Element screenshots
+- Cross-browser baselines
+- Automatic diff generation
+- Native Playwright snapshots
+
+Run:
+
+```bash
+npm run test:visual
+```
+
+Update snapshots:
+
+```bash
+npm run test:visual:update
+```
 
 # Roadmap
 
