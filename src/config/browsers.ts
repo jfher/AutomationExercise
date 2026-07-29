@@ -15,6 +15,15 @@ export const Browsers = {
         }
     },
 
+    a11yTests: {
+        name: 'a11yTests',
+        testMatch: /a11y\/.*\.spec\.ts/,
+        use: {
+            ...devices["Desktop Chrome"],
+            storageState: undefined
+        }
+    },
+
     contactTests: {
         name: 'contactTests',
         testMatch: /contact\/.*\.spec\.ts/,
@@ -48,7 +57,8 @@ export const Browsers = {
             /authentication\/.*/,
             /contact\/.*/,
             /api\/.*/,
-            /integration\/.*/
+            /integration\/.*/,
+            /a11y\/.*/
         ],
         use: {
             ...devices["Desktop Chrome"],
@@ -63,7 +73,8 @@ export const Browsers = {
             /authentication\/.*/,
             /contact\/.*/,
             /api\/.*/,
-            /integration\/.*/
+            /integration\/.*/,
+            /a11y\/.*/
         ],
         use: {
             ...devices["Desktop Firefox"],
@@ -78,7 +89,8 @@ export const Browsers = {
             /authentication\/.*/,
             /contact\/.*/,
             /api\/.*/,
-            /integration\/.*/
+            /integration\/.*/,
+            /a11y\/.*/
         ],
         use: {
             ...devices["Desktop Safari"],

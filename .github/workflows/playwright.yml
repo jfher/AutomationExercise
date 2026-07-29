@@ -64,6 +64,10 @@ jobs:
 
                 npm run test:smoke;;
 
+              a11y)
+
+                npm run test:a11y;;
+
               regression)
 
                 npm run test:regression;;

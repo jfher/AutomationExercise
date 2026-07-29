@@ -29,6 +29,7 @@ export default defineConfig({
     },
     projects: [
         Browsers.setup,
+        Browsers.a11yTests,
         Browsers.authTests,
         Browsers.integrationTests,
         Browsers.apiTests,

@@ -25,6 +25,7 @@ import { contacts } from '@data/static/contact';
 import { ProductsApi } from '@api/endpoints/products-api';
 import { AuthApi } from '@api/endpoints/auth-api';
 import { Environment } from '@config/environment';
+import { AxeHelper } from '@utils/axe/axe-helper';
 
 type Fixtures = {
     loginPage: LoginPage;
@@ -59,6 +60,8 @@ type Fixtures = {
     productsApi: ProductsApi;
     authApi: AuthApi;
     userApi: typeof users.apiUser;
+
+    axe: AxeHelper;
 };
 
 export const test = base.extend<Fixtures>({
@@ -171,6 +174,10 @@ export const test = base.extend<Fixtures>({
 
     userApi: async ({ }, use) => {
         await use(users.apiUser);
+    },
+
+    axe: async ({ page }, use) => {
+        await use(new AxeHelper(page));
     },
 });
 

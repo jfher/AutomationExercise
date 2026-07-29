@@ -20,6 +20,7 @@
         "test:contact": "npx playwright test --grep @contact",
         "test:api": "npx playwright test --grep @api",
         "test:integration": "npx playwright test --grep @integration",
+        "test:a11y": "npx playwright test --grep @a11y",
         "report": "npx playwright show-report",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
@@ -62,6 +63,7 @@
     },
     "homepage": "https://github.com/jfher/AutomationExercise#readme",
     "devDependencies": {
+        "@axe-core/playwright": "^4.12.1",
         "@faker-js/faker": "^10.5.0",
         "@playwright/test": "^1.61.1",
         "@types/node": "^26.1.1",
